@@ -1,0 +1,65 @@
+<h1>Contact Form</h1>
+
+
+
+<div class="container my-5">
+  <div class="row">
+    <div class="col-6">
+      <form #form="ngForm" (ngSubmit)="add()">
+        
+        <div class="mb-3">
+          <label for="fname" class="form-label">First Name</label>
+          <input type="text" class="form-control" [(ngModel)]="addEmployee.fname" name="fname" id="fname" required />
+        </div>
+        <div class="mb-3">
+          <label for="lname" class="form-label">Last Name</label>
+          <input type="text" class="form-control" [(ngModel)]="addEmployee.lname" name="lname" id="lname" />
+        </div>
+        <div class="mb-3">
+          <label for="fname" class="form-label">Email Id</label>
+          <input type="email" class="form-control" [(ngModel)]="addEmployee.email" name="email" id="email" required />
+        </div>
+        <div class="mb-3">
+          <label for="branch" class="form-label">Branch</label>
+          <input type="text" class="form-control" [(ngModel)]="addEmployee.branch" name="branch" id="branch" required />
+        </div>
+        <button type="submit" class="btn btn-success ">Submit</button>
+        <button type="reset" class="btn btn-danger ">Reset</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--<div>
+  <form  #userName="ngForm" (ngSubmit)="onSubmit();clearData();" name="formname">
+
+    <label>
+      Employee ID: <input type="text" [(ngModel)]="empid"  name="empid" required>
+    </label>
+    <br>
+    <br>
+    <label>
+      First Name: <input type="text" [(ngModel)]="fname" name="fname" required>
+    </label>
+    <br>
+    <br>
+    <label>
+      Last Name: <input type="text" [(ngModel)]="lname" name="lname" required>
+    </label>
+    <br>
+    <br>
+    <label>
+      Email ID: <input type="email" [(ngModel)]="email" name="email" required>
+    </label>
+    <br>
+    <br>
+    <label>
+      Branch: <input type="text" [(ngModel)]="branch" name="branch" required>
+    </label>
+    <br>
+    <br>
+    <br>
+    <button type="submit">Submit</button>
+  </form>
+</div>-->
+

@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\.angular",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\employee-list",
+    "\\src\\app\\employee-list\\edit-employee",
+    "\\src\\app\\models",
+    "\\src\\app\\response-time",
+    "\\src\\app\\services",
+    "\\src\\app\\webcam",
+    "\\src\\environments"
+  ],
+  "SelectedNode": "\\src\\app\\shared.service.ts",
+  "PreviewInSolutionExplorer": false
+}

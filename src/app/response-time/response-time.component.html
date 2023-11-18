@@ -1,0 +1,24 @@
+<p>response-time works!</p>
+
+<div class="container"> <p>Your IP Address : {{ipAddress}}</p> </div>
+
+
+<div class="container my-5">
+
+
+  <h1 class="mb-3 text-center text-uppercase">Employee List</h1>
+  <br />
+  <table class="table table-bordered table-striped" *ngIf="res && res.length>0">
+    <thead>
+    <th>GPN</th>
+
+    </thead>
+    <tbody>
+      <tr *ngFor="let x of res">
+        <td>{{x.GPN   }}</td>
+
+      </tr>
+    </tbody>
+  </table>
+  <p *ngIf="!res || res.length<=0">Record Not Found !!</p>
+</div>
