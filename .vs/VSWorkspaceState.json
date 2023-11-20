@@ -1,7 +1,6 @@
 {
   "ExpandedNodes": [
     "",
-    "\\.angular",
     "\\src",
     "\\src\\app",
     "\\src\\app\\employee-list",
@@ -12,6 +11,5 @@
     "\\src\\app\\webcam",
     "\\src\\environments"
   ],
-  "SelectedNode": "\\src\\app\\shared.service.ts",
   "PreviewInSolutionExplorer": false
 }

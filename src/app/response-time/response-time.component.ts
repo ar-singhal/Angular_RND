@@ -4,6 +4,7 @@ import { EmployeesService } from '../services/employees.service';
 import { Cls } from '../models/cls.model';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { IpServiceService } from '../services/ip-service.service';
+import { formatDate } from '@angular/common';
 
 
 @Component({
@@ -19,6 +20,8 @@ export class ResponseTimeComponent implements OnInit {
   temp: Cls[] = [];
   ipAddress: string = "";
   deviceInfo = null;
+  today = Date.now();
+  INDDataTime = '';
   constructor(private employeesService: EmployeesService, private ipserv: IpServiceService, private deviceService: DeviceDetectorService) {
     this.ipserv.getIp().subscribe((data: any) => {
       console.log(data)
@@ -31,12 +34,19 @@ export class ResponseTimeComponent implements OnInit {
    /* let currentUrl = document.location.protocol + "//" + document.location.hostname + ":" + document.location.port;
     console.log(currentUrl);*/
 
+    
+
+    setInterval(() => {
+      this.INDDataTime = formatDate(Date.now(), 'dd-MM-yyyy hh:mm:ss a', 'en-US', '+0530');
+    }, 1000)
+
     this.getLocalIPs().then(ips => {
       ips.forEach(ip => this.ipAddress = ip
       
       );
       
     });
+
 
 
     this.epicFunction();
