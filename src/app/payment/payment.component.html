@@ -1,0 +1,11 @@
+<p>payment works!</p>
+<h2>Create Token Example</h2>
+<ngx-stripe-card [options]="cardOptions"
+                 [elementsOptions]="elementsOptions"></ngx-stripe-card>
+<button type="submit" (click)="createToken()">
+  CREATE TOKEN
+</button>
+
+
+<button (click)="initiatePayment()">Pay Now</button>
+<a [routerLink]="'/app-razorpay-payment'"><button>Razorpay Now</button></a>

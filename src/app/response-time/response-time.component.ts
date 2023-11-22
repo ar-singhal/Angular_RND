@@ -22,6 +22,8 @@ export class ResponseTimeComponent implements OnInit {
   deviceInfo = null;
   today = Date.now();
   INDDataTime = '';
+  longitude = '';
+  latitude = '';
   constructor(private employeesService: EmployeesService, private ipserv: IpServiceService, private deviceService: DeviceDetectorService) {
     this.ipserv.getIp().subscribe((data: any) => {
       console.log(data)
@@ -39,6 +41,14 @@ export class ResponseTimeComponent implements OnInit {
     setInterval(() => {
       this.INDDataTime = formatDate(Date.now(), 'dd-MM-yyyy hh:mm:ss a', 'en-US', '+0530');
     }, 1000)
+
+    this.employeesService.getPosition().then(pos => {
+      this.longitude = pos.lng;
+      this.latitude = pos.lat;
+      console.log(`Positon: ${pos.lng} ${pos.lat}`);
+    });
+
+
 
     this.getLocalIPs().then(ips => {
       ips.forEach(ip => this.ipAddress = ip

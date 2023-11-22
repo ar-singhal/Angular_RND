@@ -3,13 +3,14 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\employee-list",
-    "\\src\\app\\employee-list\\edit-employee",
-    "\\src\\app\\models",
+    "\\src\\app\\pagenotfound",
+    "\\src\\app\\payment-failure",
+    "\\src\\app\\payment-success",
     "\\src\\app\\response-time",
     "\\src\\app\\services",
     "\\src\\app\\webcam",
     "\\src\\environments"
   ],
+  "SelectedNode": "\\src\\app\\app.component.ts",
   "PreviewInSolutionExplorer": false
 }

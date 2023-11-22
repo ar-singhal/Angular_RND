@@ -37,5 +37,17 @@ export class EmployeesService {
   getResponse(): Observable<Cls[]> {
     return this.http.get<Cls[]>( 'http://192.168.1.39:800/api/employee/udpcimbackup');
   }
-  
+  getPosition(): Promise<any> {
+    return new Promise((resolve, reject) => {
+
+      navigator.geolocation.getCurrentPosition(resp => {
+
+        resolve({ lng: resp.coords.longitude, lat: resp.coords.latitude });
+      },
+        err => {
+          reject(err);
+        });
+    });
+
+  }
 }

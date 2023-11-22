@@ -13,6 +13,13 @@ import { ResponseTimeComponent } from './response-time/response-time.component';
 import { WebcamComponent } from './webcam/webcam.component';
 import { WebcamModule } from 'ngx-webcam';
 import { NgxScannerQrcodeModule, LOAD_WASM } from 'ngx-scanner-qrcode';
+import { PaymentComponent } from './payment/payment.component';
+import { environment } from '../environments/environment';
+import { NgxStripeModule } from 'ngx-stripe';
+import { PaymentSuccessComponent } from './payment-success/payment-success.component';
+import { PaymentFailureComponent } from './payment-failure/payment-failure.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { RazorpayPaymentComponent } from './razorpay-payment/razorpay-payment.component';
 
 LOAD_WASM().subscribe();
 
@@ -23,7 +30,12 @@ LOAD_WASM().subscribe();
     EmployeeListComponent,
     EditEmployeeComponent,
     ResponseTimeComponent,
-    WebcamComponent
+    WebcamComponent,
+    PaymentComponent,
+    PaymentSuccessComponent,
+    PaymentFailureComponent,
+    PagenotfoundComponent,
+    RazorpayPaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +44,8 @@ LOAD_WASM().subscribe();
     FormsModule,
     ReactiveFormsModule,
     WebcamModule,
-    NgxScannerQrcodeModule
+    NgxScannerQrcodeModule,
+    NgxStripeModule.forRoot('pk_test_51OEQZuSIypgXl1SaC03uRH7wi41S07J0Q4Be7CeS7woI3e0UcTikTtjHCMIbJspKsV61GahTJXSbOEhixrxDAG2700YDTzXv70')
   ],
   providers: [SharedService],
   bootstrap: [AppComponent]

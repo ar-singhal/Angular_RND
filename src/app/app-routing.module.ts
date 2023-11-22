@@ -5,6 +5,11 @@ import { EditEmployeeComponent } from './employee-list/edit-employee/edit-employ
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { ResponseTimeComponent } from './response-time/response-time.component';
 import { WebcamComponent } from './webcam/webcam.component';
+import { PaymentComponent } from './payment/payment.component';
+import { PaymentSuccessComponent } from './payment-success/payment-success.component';
+import { PaymentFailureComponent } from './payment-failure/payment-failure.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { RazorpayPaymentComponent } from './razorpay-payment/razorpay-payment.component';
 
 
 const routes: Routes = [
@@ -12,7 +17,12 @@ const routes: Routes = [
   { path: 'employee-list', component: EmployeeListComponent },
   { path: 'employee-list/edit/:id', component: EditEmployeeComponent },
   { path: 'response-time', component: ResponseTimeComponent },
-  { path: 'app-webcam', component: WebcamComponent }
+  { path: 'app-webcam', component: WebcamComponent },
+  { path: 'app-payment', component: PaymentComponent },
+  { path: 'app-razorpay-payment', component: RazorpayPaymentComponent },
+  { path: 'payment-success', component: PaymentSuccessComponent },
+  { path: 'payment-failed', component: PaymentFailureComponent },
+  { path: 'pagenotfound', component: PagenotfoundComponent }
   
   
 ];
