@@ -1,11 +1,12 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ContactComponent } from './contact/contact.component';
 import { SharedService } from './shared.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { EditEmployeeComponent } from './employee-list/edit-employee/edit-employee.component';
@@ -20,8 +21,24 @@ import { PaymentSuccessComponent } from './payment-success/payment-success.compo
 import { PaymentFailureComponent } from './payment-failure/payment-failure.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { RazorpayPaymentComponent } from './razorpay-payment/razorpay-payment.component';
+import { TranslationService } from './services/translation.service';
+import { TranslateComponent } from './translate/translate.component';
+import { LoginSuccessComponent } from './login-success/login-success.component';
+import { SocialLoginModule, SocialAuthServiceConfig, GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
+import {
+  GoogleLoginProvider
+} from '@abacritt/angularx-social-login';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
 LOAD_WASM().subscribe();
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -35,7 +52,9 @@ LOAD_WASM().subscribe();
     PaymentSuccessComponent,
     PaymentFailureComponent,
     PagenotfoundComponent,
-    RazorpayPaymentComponent
+    RazorpayPaymentComponent,
+    TranslateComponent,
+    LoginSuccessComponent
   ],
   imports: [
     BrowserModule,
@@ -45,9 +64,47 @@ LOAD_WASM().subscribe();
     ReactiveFormsModule,
     WebcamModule,
     NgxScannerQrcodeModule,
-    NgxStripeModule.forRoot('pk_test_51OEQZuSIypgXl1SaC03uRH7wi41S07J0Q4Be7CeS7woI3e0UcTikTtjHCMIbJspKsV61GahTJXSbOEhixrxDAG2700YDTzXv70')
+    MatCardModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    SocialLoginModule,
+    GoogleSigninButtonModule,
+
+    NgxStripeModule.forRoot('pk_test_51OEQZuSIypgXl1SaC03uRH7wi41S07J0Q4Be7CeS7woI3e0UcTikTtjHCMIbJspKsV61GahTJXSbOEhixrxDAG2700YDTzXv70'),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
+    BrowserAnimationsModule,
   ],
-  providers: [SharedService],
+  providers: [{
+    provide: 'SocialAuthServiceConfig',
+    useValue: {
+      autoLogin: false,
+      providers: [
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider(
+            '718808384859-stqfd4qeufame54fjbqespfdgrc68o9u.apps.googleusercontent.com'
+          )
+        }
+      ],
+      onError: (err) => {
+        console.error(err);
+      }
+    } as SocialAuthServiceConfig,
+  }
+    , SharedService, TranslationService],
+  
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor(private translationService: TranslationService) {
+    this.translationService.init();
+  }
+}

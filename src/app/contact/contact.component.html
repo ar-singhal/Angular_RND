@@ -1,12 +1,42 @@
 <h1>Contact Form</h1>
 
+<mat-card>
+  <mat-card-title>Login</mat-card-title>
+  <mat-card-content fxLayout="column" fxLayoutAlign="space-around center">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput type="email">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput type="password">
+    </mat-form-field>
+
+  </mat-card-content>
+  <mat-card-actions>
+    <div>
+      <button mat-raised-button>Login</button>
+      <asl-google-signin-button type='icon' size='large'></asl-google-signin-button>
+
+    </div>
+
+  </mat-card-actions>
+  <div *ngIf="user">
+    <img src="{{ user.photoUrl }}">
+    <div>
+      <h4>{{ user.name }}</h4>
+      <p>{{ user.email }}</p>
+    </div>
+  </div>
+</mat-card>
 
 
 <div class="container my-5">
   <div class="row">
     <div class="col-6">
       <form #form="ngForm" (ngSubmit)="add()">
-        
+
         <div class="mb-3">
           <label for="fname" class="form-label">First Name</label>
           <input type="text" class="form-control" [(ngModel)]="addEmployee.fname" name="fname" id="fname" required />
@@ -62,4 +92,3 @@
     <button type="submit">Submit</button>
   </form>
 </div>-->
-

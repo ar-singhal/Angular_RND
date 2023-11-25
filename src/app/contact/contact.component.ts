@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Employee } from '../models/employee.model';
 import { EmployeesService } from '../services/employees.service';
+import { GoogleLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
 
 
 @Component({
@@ -35,7 +36,8 @@ export class ContactComponent implements OnInit {
     
     
   }*/
-
+  user: any;
+  loggedIn: any;
   addEmployee: Employee = {
     id: '',
     fname:'',
@@ -44,12 +46,23 @@ export class ContactComponent implements OnInit {
     branch:''
   }
 
-  constructor(private employeesService: EmployeesService, private router: Router) { }
+  constructor(private employeesService: EmployeesService, private router: Router, private socialAuthService: SocialAuthService) { }
 
   ngOnInit(): void {
-
+    this.socialAuthService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+      console.log(this.user)
+    });
   }
 
+  loginWithGoogle(): void {
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID)
+      .then(() => this.router.navigate(['/login-success']));
+  }
+  refreshToken(): void {
+    this.socialAuthService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
+  }
   add() {
     this.employeesService.postEmployee(this.addEmployee).subscribe({
       next: (e) => {
