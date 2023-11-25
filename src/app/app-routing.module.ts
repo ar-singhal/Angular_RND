@@ -10,6 +10,8 @@ import { PaymentSuccessComponent } from './payment-success/payment-success.compo
 import { PaymentFailureComponent } from './payment-failure/payment-failure.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { RazorpayPaymentComponent } from './razorpay-payment/razorpay-payment.component';
+import { TranslateComponent } from './translate/translate.component';
+import { LoginSuccessComponent } from './login-success/login-success.component';
 
 
 const routes: Routes = [
@@ -22,8 +24,9 @@ const routes: Routes = [
   { path: 'app-razorpay-payment', component: RazorpayPaymentComponent },
   { path: 'payment-success', component: PaymentSuccessComponent },
   { path: 'payment-failed', component: PaymentFailureComponent },
-  { path: 'pagenotfound', component: PagenotfoundComponent }
-  
+  { path: 'pagenotfound', component: PagenotfoundComponent },
+  { path: 'app-translate', component: TranslateComponent },
+  { path: 'login-success', component: LoginSuccessComponent }  
   
 ];
 

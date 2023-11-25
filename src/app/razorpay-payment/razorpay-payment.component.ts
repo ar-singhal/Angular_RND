@@ -12,10 +12,12 @@ export class RazorpayPaymentComponent {
     const RozarpayOptions = {
       description: 'Sample Razorpay Testing',
       currency: 'INR',
-      amount: 100000,
+      amount: 1000,
       name: 'Areteinfo Technologies',
       key: 'rzp_test_mWWMnuCuMAppXL',
       image: 'https://i.imgur.com/FApqk3D.jpeg',
+      successCallback: 'http://localhost:4200/payment-success', // Replace with your success URL
+      cancelIdleCallback: 'http://localhost:4200/payment-failed',
       prefill: {
         name: 'Aryan Singhal',
         email: 'ar24@gmail.com',

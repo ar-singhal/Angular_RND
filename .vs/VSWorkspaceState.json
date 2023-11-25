@@ -3,14 +3,14 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\pagenotfound",
     "\\src\\app\\payment-failure",
     "\\src\\app\\payment-success",
+    "\\src\\app\\razorpay-payment",
     "\\src\\app\\response-time",
     "\\src\\app\\services",
     "\\src\\app\\webcam",
     "\\src\\environments"
   ],
-  "SelectedNode": "\\src\\app\\app.component.ts",
+  "SelectedNode": "\\src\\index.html",
   "PreviewInSolutionExplorer": false
 }
