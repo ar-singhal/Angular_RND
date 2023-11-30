@@ -33,6 +33,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 LOAD_WASM().subscribe();
 
@@ -70,7 +71,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatInputModule,
     SocialLoginModule,
     GoogleSigninButtonModule,
-
+    NgxPaginationModule,
     NgxStripeModule.forRoot('pk_test_51OEQZuSIypgXl1SaC03uRH7wi41S07J0Q4Be7CeS7woI3e0UcTikTtjHCMIbJspKsV61GahTJXSbOEhixrxDAG2700YDTzXv70'),
     TranslateModule.forRoot({
       loader: {

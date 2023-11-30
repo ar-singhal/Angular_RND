@@ -27,12 +27,22 @@ export class EmployeeListComponent implements OnInit {
 
   ];*/
   employees: Employee[] = [];
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 8;
+  tableSizes: any = [3, 6, 9, 12];
+  
   searchtxt: string = "" ;
 
-  constructor(private employeesService: EmployeesService) { }
+  constructor(private employeesService: EmployeesService) {
+    
+  }
 
   ngOnInit(): void {
+    this.fetchData();
     
+  }
+  fetchData(): void {
     this.employeesService.getEmployee().subscribe({
       next: (e) => {
         this.employees = e;
@@ -41,6 +51,15 @@ export class EmployeeListComponent implements OnInit {
         console.log(response);
       }
     });
+  }
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.fetchData();
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.fetchData();
   }
   search() {
     this.employeesService.searchEmployee(this.searchtxt).subscribe({

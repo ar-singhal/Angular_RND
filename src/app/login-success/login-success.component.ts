@@ -12,6 +12,10 @@ export class LoginSuccessComponent {
   title = 'angular-google';
   user: any;
   loggedIn: any;
+
+  
+
+
   constructor(private authService: SocialAuthService) { }
 
   ngOnInit() {
