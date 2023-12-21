@@ -3,13 +3,13 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\contact",
     "\\src\\app\\employee-list",
-    "\\src\\app\\login-success",
+    "\\src\\app\\pagenotfound",
     "\\src\\app\\payment",
+    "\\src\\app\\response-time",
+    "\\src\\app\\services",
     "\\src\\app\\webcam",
     "\\src\\environments"
   ],
-  "SelectedNode": "\\src\\app\\app.module.ts",
   "PreviewInSolutionExplorer": false
 }

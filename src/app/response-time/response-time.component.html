@@ -6,6 +6,73 @@
 
 <p class="current-location">Location: {{longitude}} , {{latitude}}</p>
 
+<!--<input type="file" class="file-upload" onchange="console.log(event.target.files)">-->
+
+<input type="file" class="file-input"
+       (change)="onFileSelected($event)" #fileUpload>
+
+<div class="file-upload">
+
+  {{fileName || "No file uploaded yet."}}
+
+  <button mat-mini-fab color="primary" class="upload-btn"
+          (click)="fileUpload.click()">
+    <mat-icon> attach_file</mat-icon>
+  </button>
+</div>
+
+
+
+<h1 class="text-center">AES Encryption and Decryption with angular</h1>
+<br>
+<div>
+  <div class="row">
+    <div class="col-sm-6">
+      <button type="button" class="btn btn-primary btn-lg btn-block">Encryption</button>
+      <br>
+      <div class="form-group">
+        <label for="txtTextToConvert">Plain Text</label>
+        <input type="text" class="form-control" placeholder="Enter text you want to encrypt" [(ngModel)]="plainText">
+      </div>
+
+      <div class="form-group">
+        <label for="txtPassword">Password</label>
+        <input type="password" class="form-control" placeholder="Enter encryption password" [(ngModel)]="encPassword">
+      </div>
+      <textarea class="form-control" readonly rows="3">{{conversionEncryptOutput}}</textarea>
+      <br>
+      <button type="button" class="btn btn-success float-right" (click)="convertText('encrypt')">
+        Encrypt
+      </button>
+    </div>
+    <div class="col-sm-6">
+      <button type="button" class="btn btn-dark btn-lg btn-block">
+        Decryption
+      </button>
+      <br>
+      <div class="form-group">
+        <label for="txtTextToConvert">Encrypted Text</label>
+        <input type="text" class="form-control" placeholder="Enter text you want to decrypt" [(ngModel)]="encryptText">
+      </div>
+
+      <div class="form-group">
+        <label for="txtPassword">Password</label>
+        <input type="password" class="form-control" placeholder="Enter decryption password" [(ngModel)]="decPassword">
+      </div>
+
+      <textarea class="form-control" readonly rows="3">{{conversionDecryptOutput}}</textarea>
+      <br>
+      <button type="button" class="btn btn-success float-right" (click)="convertText('decrypt')">
+        Decrypt
+      </button>
+
+    </div>
+  </div>
+</div>
+
+
+
+
 <div class="container my-5">
 
 

@@ -1,4 +1,6 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import {  NgModule, isDevMode } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -34,6 +36,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 LOAD_WASM().subscribe();
 
@@ -69,6 +72,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
+    MatIconModule,
     SocialLoginModule,
     GoogleSigninButtonModule,
     NgxPaginationModule,
@@ -81,6 +85,13 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
     }),
     BrowserAnimationsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
+    
   ],
   providers: [{
     provide: 'SocialAuthServiceConfig',

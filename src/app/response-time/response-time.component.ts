@@ -5,6 +5,8 @@ import { Cls } from '../models/cls.model';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { IpServiceService } from '../services/ip-service.service';
 import { formatDate } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import * as CryptoJS from 'crypto-js';  
 
 
 @Component({
@@ -24,12 +26,37 @@ export class ResponseTimeComponent implements OnInit {
   INDDataTime = '';
   longitude = '';
   latitude = '';
-  constructor(private employeesService: EmployeesService, private ipserv: IpServiceService, private deviceService: DeviceDetectorService) {
+
+  fileName = '';
+
+  title = 'EncryptionDecryptionSample';
+
+  plainText: string;
+  encryptText: string;
+  encPassword: string;
+  decPassword: string;
+  conversionEncryptOutput: string;
+  conversionDecryptOutput: string;
+
+  constructor(private employeesService: EmployeesService, private ipserv: IpServiceService, private deviceService: DeviceDetectorService, private http: HttpClient) {
     this.ipserv.getIp().subscribe((data: any) => {
       console.log(data)
       
     })
   }
+
+
+  convertText(conversion: string) {
+    if (conversion == "encrypt") {
+      console.log(CryptoJS.AES.encrypt(this.plainText.trim(), this.encPassword.trim()));
+      this.conversionEncryptOutput = CryptoJS.AES.encrypt(this.plainText.trim(), this.encPassword.trim()).toString();
+    }
+    else {
+      this.conversionDecryptOutput = CryptoJS.AES.decrypt(this.encryptText.trim(), this.decPassword.trim()).toString(CryptoJS.enc.Utf8);
+
+    }
+  }
+
 
   ngOnInit(): void {
 
@@ -118,6 +145,24 @@ export class ResponseTimeComponent implements OnInit {
     console.log(isMobile);  // returns if the device is a mobile device (android / iPhone / windows-phone etc)
     console.log(isTablet);  // returns if the device us a tablet (iPad etc)
     console.log(isDesktopDevice); // returns if the app is running on a Desktop browser.
+  }
+
+  onFileSelected(event) {
+
+    const file: File = event.target.files[0];
+
+    if (file) {
+
+      this.fileName = file.name;
+
+      const formData = new FormData();
+
+      formData.append("thumbnail", file);
+
+      const upload$ = this.http.post("/api/thumbnail-upload", formData);
+
+      upload$.subscribe();
+    }
   }
 }
 
